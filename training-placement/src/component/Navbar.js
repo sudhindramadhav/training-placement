@@ -12,7 +12,8 @@ export default function Navbar() {
             </svg>
             <span className="ml-3 text-xl">Placement Cell</span>
           </Link>
-          <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center"> 
+            <Link to="/Login" className="mr-5 hover:text-gray-900">Login</Link>
             <Link to="/home" className="mr-5 hover:text-gray-900">Home</Link>
             <Link to="/about" className="mr-5 hover:text-gray-900">About</Link>
             <Link to="/placement_incharge" className="mr-5 hover:text-gray-900">Placement Incharge</Link>
