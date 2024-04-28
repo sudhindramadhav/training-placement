@@ -12,6 +12,12 @@ import StudentPlacementDrive from './component/student/StudentPlacementDrive';
 import LoginPage from './component/loginPage/LoginPage';
 import SignupPage from './component/loginPage/SignupPage';
 import ForgotPassword from './component/loginPage/ForgotPassword';
+import InchargeLogin from './component/incharge/InchargeLogin';
+import InchargeWorkshop from './component/incharge/InchargeWorkshop';
+import InchargeInternship from './component/incharge/InchargeInternship';
+import InchargePlacementDrive from './component/incharge/InchargePlacementDrive';
+import InchargeStudentRegistered from './component/incharge/InchargeStudentRegistered';
+import InchargeStudentResult from './component/incharge/InchargeStudentResult';
 
 function App() {
   return (
@@ -31,6 +37,13 @@ function App() {
           <Route path="/studentworkshop" element={<StudentWorkshop/>} />
           <Route path = "/studentinternship" element={<StudentInternship/>}/>
           <Route path = "/studentplacementdrive" element={<StudentPlacementDrive/>}/>
+
+          <Route path = "/incharge_login" element={<InchargeLogin/>}/>
+          <Route path = "/inchargeworkshop" element={<InchargeWorkshop/>}/>
+          <Route path = "/inchargeinternship" element={<InchargeInternship/>}/>
+          <Route path = "/inchargeplacementdrive" element={<InchargePlacementDrive/>}/>
+          <Route path = "/inchargestudentresult" element={<InchargeStudentResult/>}/>
+          <Route path = "/inchargestudentregistered" element={<InchargeStudentRegistered/>}/>
         </Routes>
       </Router>
     </>

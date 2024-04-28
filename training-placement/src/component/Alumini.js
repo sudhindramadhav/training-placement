@@ -1,6 +1,13 @@
-import React from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React,{useEffect} from 'react'
 
 function Alumini() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
     <div class="bg-white py-6 sm:py-8 lg:py-12">

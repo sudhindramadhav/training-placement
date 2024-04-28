@@ -1,7 +1,11 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React,{useEffect} from 'react'
 
 function PlacementIncharge() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
     <div class="bg-white py-6 sm:py-8 lg:py-12">

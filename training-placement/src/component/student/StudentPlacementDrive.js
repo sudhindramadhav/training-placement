@@ -1,6 +1,12 @@
-import React from 'react'
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React,{useEffect} from 'react'
 
 function StudentPlacementDrive() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-xl px-4 md:px-8">

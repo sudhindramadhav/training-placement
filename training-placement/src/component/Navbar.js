@@ -19,6 +19,7 @@ export default function Navbar() {
             <Link to="/placement_incharge" className="mr-5 hover:text-gray-900">Placement Incharge</Link>
             <Link to="/alumini" className="mr-5 hover:text-gray-900">Alumni</Link>
             <Link to="/student_login" className="mr-5 hover:text-gray-900">StudentLogin</Link>
+            <Link to="/incharge_login" className="mr-5 hover:text-gray-900">InchargeLogin</Link>
           </nav>
         </div>
       </header>
