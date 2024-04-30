@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './component/Home';
 import Navbar from './component/Navbar';
 import About from './component/About'
@@ -35,7 +35,7 @@ function App() {
           <Route path = '/alumini' element={<Alumini />}/>
           <Route path="/home" element={<Home />} />
           <Route path="/Login" element={<LoginPage/>}/>
-          <Route path="/Signup" element={<SignupPage/>}/>
+          <Route path="/signup" element={<SignupPage/>}/>
           <Route path="/ForgotPassword" element={<ForgotPassword/>}/>
           <Route path="/student_login" element={<StudentLogin/>} />
           <Route path="/studentworkshop" element={<StudentWorkshop/>} />
