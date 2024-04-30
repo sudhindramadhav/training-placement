@@ -18,6 +18,10 @@ import InchargeInternship from './component/incharge/InchargeInternship';
 import InchargePlacementDrive from './component/incharge/InchargePlacementDrive';
 import InchargeStudentRegistered from './component/incharge/InchargeStudentRegistered';
 import InchargeStudentResult from './component/incharge/InchargeStudentResult';
+import Retrieve from './component/loginPage/Retrieve';
+import AddWorkshops from './component/incharge/adding/AddWorkshops';
+import AddPlacement from './component/incharge/adding/AddPlacement';
+import AddInternship from './component/incharge/adding/AddInternship';
 
 function App() {
   return (
@@ -44,6 +48,12 @@ function App() {
           <Route path = "/inchargeplacementdrive" element={<InchargePlacementDrive/>}/>
           <Route path = "/inchargestudentresult" element={<InchargeStudentResult/>}/>
           <Route path = "/inchargestudentregistered" element={<InchargeStudentRegistered/>}/>
+
+          <Route path = "/addplacement" element={<AddPlacement/>}/>
+          <Route path = "/addinternship" element={<AddInternship/>}/>
+          <Route path = "/addworkshop" element={<AddWorkshops/>}/>
+
+          <Route path = "/retrieve" element={<Retrieve/>}/>
         </Routes>
       </Router>
     </>
