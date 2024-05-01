@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb+srv://219E1A3722:219E1A3722@cluster0.zt5xtcb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-const client = new MongoClient(uri);
+// MongoDB connection URI with database name
+const uri = "mongodb+srv://219E1A3722:219E1A3722@cluster0.zt5xtcb.mongodb.net/Training_Placement?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+// Connect to MongoDB
 async function connectToDatabase() {
   try {
     await client.connect();
@@ -15,22 +15,16 @@ async function connectToDatabase() {
   }
 }
 
-connectToDatabase();
-
-router.post('/signup', async (req, res) => {
+// Insert user data into MongoDB
+async function insertUser(newUser) {
   try {
-    const { id, password } = req.body;
-    console.log(`Received data: ${id}, ${password}`);
-
-    const db = client.db("Training_Placement");
-    const result = await db.collection("Users").insertOne({ id, password });
-    console.log(`Inserted data with id: ${result.insertedId}`);
-
-    res.send('Received data and saved to database successfully');
+    const db = client.db();
+    const collection = db.collection('Users');
+    const result = await collection.insertOne(newUser);
+    return result;
   } catch (error) {
-    console.error("Error inserting data:", error);
-    res.status(500).send('Error saving data to database');
+    throw error;
   }
-});
+}
 
-module.exports = router;
+module.exports = { connectToDatabase, insertUser };

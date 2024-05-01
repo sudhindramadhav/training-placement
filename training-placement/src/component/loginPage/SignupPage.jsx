@@ -15,7 +15,6 @@ const SignupPage = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:8000/signup', data);
-    // navigate('/retrieve');
     window.location.href = '/';
     } catch (error) {
       console.log(error);
