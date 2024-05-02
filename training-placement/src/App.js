@@ -22,6 +22,8 @@ import Retrieve from './component/loginPage/Retrieve';
 import AddWorkshops from './component/incharge/adding/AddWorkshops';
 import AddPlacement from './component/incharge/adding/AddPlacement';
 import AddInternship from './component/incharge/adding/AddInternship';
+import StudentPage from './component/studentsPage/StudentPage';
+import AdminPage from './component/studentsPage/AdminPage';
 
 function App() {
   return (
@@ -48,6 +50,9 @@ function App() {
           <Route path = "/inchargeplacementdrive" element={<InchargePlacementDrive/>}/>
           <Route path = "/inchargestudentresult" element={<InchargeStudentResult/>}/>
           <Route path = "/inchargestudentregistered" element={<InchargeStudentRegistered/>}/>
+
+          <Route path = "/studentPage" element={<StudentPage/>}/>
+          <Route path = "/adminPage" element={<AdminPage/>}/>
 
           <Route path = "/addplacement" element={<AddPlacement/>}/>
           <Route path = "/addinternship" element={<AddInternship/>}/>
