@@ -6,6 +6,7 @@ const LoginPage = () => {
   const [data, setData] = useState({ id: '', password: '' });
   const { id, password } = data;
   const [liveuser,setLiveuser] = useState([]);
+  const [loginerror,setLoginerror] = useState('');
 
   const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -25,13 +26,19 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:8000/login', data).then(res=>{
-        setLiveuser(res.user);
+        setLiveuser(res.data.user);
+        if(res.data.message==="Login successful"){
         if(liveuser.previlege=== "Admin"){
           window.location.href = '/adminPage';
         }
-        else{
+        else if(liveuser.previlege=== "Student"){
           window.location.href = '/studentPage';
         }
+      }
+      else{
+        setLoginerror("Sorry you are not a user");
+        console.log(loginerror);
+      }
       })
     } catch (error) {
       console.log(error);
@@ -46,7 +53,6 @@ const LoginPage = () => {
             Login
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6">
             <div>

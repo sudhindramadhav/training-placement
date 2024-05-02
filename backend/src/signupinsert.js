@@ -4,6 +4,7 @@ const { MongoClient } = require('mongodb');
 const uri ="mongodb+srv://munikumarsvec143:229E5a3701@training-placement.5pyamvi.mongodb.net/Training_Placement?retryWrites=true&w=majority&appName=Training-Placement";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+// Connect to MongoDB
 async function connectToDatabase() {
   try {
     await client.connect();
@@ -13,7 +14,6 @@ async function connectToDatabase() {
     process.exit(1);
   }
 }
-
 async function insertUser(newUser) {
   try {
     const db = client.db();
