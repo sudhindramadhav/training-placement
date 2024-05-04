@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Preloader from './Preloader';
+import PopupMessage from '../studentsPage/PopupMessage';
 
 const LoginPage = () => {
   const [data, setData] = useState({ id: '', password: '' });
   const { id, password } = data;
-  const [liveuser, setLiveuser] = useState([]);
-  const [loginerror, setLoginerror] = useState('');
   const [preloaderaction, setPreloaderaction] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -18,29 +18,23 @@ const LoginPage = () => {
     setPreloaderaction(true);
     try {
       const res = await axios.post('http://localhost:8000/login', data);
-      setLiveuser(res.data.user);
       if (res.data.message === "Login successful") {
-        if (liveuser.previlege === "Admin") {
-          // Redirect to AdminPage with liveuser array as query parameter
+        if (res.data.user.previlege === "Admin") {
           window.location.href = `/adminPage?liveuser=${JSON.stringify(res.data.user)}`;
-          setPreloaderaction(false);
-        } else if (liveuser.previlege === "Student") {
-          // Redirect to StudentPage with liveuser array as query parameter
+        } else if (res.data.user.previlege === "Student") {
           window.location.href = `/studentPage?liveuser=${JSON.stringify(res.data.user)}`;
-          setPreloaderaction(false);
         }
       } else {
-        setLoginerror("Sorry you are not a user");
-        console.log(loginerror);
-        setPreloaderaction(false);
+        setShowPopup(true);
       }
     } catch (error) {
+      setShowPopup(true);
       console.log(error);
+    } finally {
       setPreloaderaction(false);
     }
-    setPreloaderaction(false);
   };
-
+  
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -101,6 +95,7 @@ const LoginPage = () => {
         </div>
       </div>
       {preloaderaction && <Preloader />}
+      {showPopup && <PopupMessage open={showPopup} setOpen={setShowPopup} />}
     </>
   );
 };
