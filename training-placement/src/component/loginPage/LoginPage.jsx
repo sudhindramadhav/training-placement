@@ -3,7 +3,7 @@ import axios from 'axios';
 import Preloader from './Preloader';
 import PopupMessage from '../studentsPage/PopupMessage';
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [data, setData] = useState({ id: '', password: '' });
   const { id, password } = data;
   const [preloaderaction, setPreloaderaction] = useState(false);
@@ -19,10 +19,11 @@ const LoginPage = () => {
     try {
       const res = await axios.post('http://localhost:8000/login', data);
       if (res.data.message === "Login successful") {
+        props.getData(res.data.user.previlege);
         if (res.data.user.previlege === "Admin") {
-          window.location.href = `/adminPage?liveuser=${JSON.stringify(res.data.user)}`;
+         window.location.href = `/adminPage?liveuser=${JSON.stringify(res.data.user)}`;
         } else if (res.data.user.previlege === "Student") {
-          window.location.href = `/studentPage?liveuser=${JSON.stringify(res.data.user)}`;
+         window.location.href = `/studentPage?liveuser=${JSON.stringify(res.data.user)}`;
         }
       } else {
         setShowPopup(true);
@@ -34,6 +35,7 @@ const LoginPage = () => {
       setPreloaderaction(false);
     }
   };
+  
   
   return (
     <>

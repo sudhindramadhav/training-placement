@@ -18,7 +18,7 @@ const StudentPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">Welcome to AdminPage</h1>
+      <h1 className="text-3xl font-bold mb-4">Welcome to StudentPage</h1>
       <div className="overflow-x-auto">
         <table className="table-auto w-full">
           <thead>
