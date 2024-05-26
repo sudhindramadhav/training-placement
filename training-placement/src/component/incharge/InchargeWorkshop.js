@@ -46,7 +46,6 @@ export default function InchargeWorkshop() {
           </div>
         </div>
       </div>
-
       <div>
         <a href="#" class="group relative mb-2 block h-80 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
           <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by eniko kis" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />

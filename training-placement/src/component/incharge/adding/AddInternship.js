@@ -6,38 +6,68 @@ export default function AddInternship() {
   const [selectedBranch, setSelectedBranch] = useState('ALL');
   const [selectedSkill, setSelectedSkill] = useState('NONE');
 
+  const [data, setData] = useState({ Title: '', Starting_Date: '', Ending_Date: '', Gender: 'ALL', Image_url: 'xyz', Description: '', Branch: 'ALL', Skills: 'NONE' });
+  const { Title, Starting_Date, Ending_Date, Gender, Image_url, Description, Branch, Skills } = data;
+
+  // const StartingDateHandler=(e)=>{
+  //   setData((m)=>({...data, Starting_Date:e.target.value}));
+  // }
+  // const EndingDateHandler=(e)=>{
+  //   setData((m)=>({...data, Ending_Date:e.target.value}));
+  // }
+
+  const changeHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+    // console.log(Description);
+  };
+
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    console.log(data);
+
+  }
+  /*
+     Title, Starting Date, Ending Date, Gender, Image, Description, Branch, Skills
+  */
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const handleBranchClick = () => {
-    if((isBranchOpen===false && isSkillsOpen===true)||(isBranchOpen===isSkillsOpen)){
-    setIsBranchOpen(true);
-    setIsSkillsOpen(false);
+    if ((isBranchOpen === false && isSkillsOpen === true) || (isBranchOpen === isSkillsOpen)) {
+      setIsBranchOpen(true);
+      setIsSkillsOpen(false);
     }
-    else{
-    setIsBranchOpen(!isBranchOpen);
+    else {
+      setIsBranchOpen(!isBranchOpen);
     }
   };
 
   const handleSkillsClick = () => {
-    if((isBranchOpen===true && isSkillsOpen===false) || (isBranchOpen===isSkillsOpen)){
-    setIsBranchOpen(false);
-    setIsSkillsOpen(true);
+    if ((isBranchOpen === true && isSkillsOpen === false) || (isBranchOpen === isSkillsOpen)) {
+      setIsBranchOpen(false);
+      setIsSkillsOpen(true);
     }
-    else{
-    setIsBranchOpen(!isSkillsOpen);
+    else if ((isSkillsOpen === true)) {
+      setIsSkillsOpen(false);
+    }
+    else {
+      setIsBranchOpen(!isSkillsOpen);
     }
   };
 
   const handleOptionClick = (value) => {
     setSelectedBranch(value);
+    setData((prevData) => ({ ...prevData, Branch: value }));
     setIsBranchOpen(false);
     setIsSkillsOpen(false);
   };
 
   const handleSkillsClickSelect = (value) => {
     setSelectedSkill(value);
+    setData((prevData) => ({ ...prevData, Skills: value }));
     setIsSkillsOpen(false);
     setIsBranchOpen(false);
   };
@@ -53,17 +83,26 @@ export default function AddInternship() {
           <form className="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label htmlFor="Title" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Title*</label>
-              <input name="Title" className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+              <input name="Title" onChange={changeHandler} value={Title} className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
             </div>
 
             <div>
-              <label for="StartingDate" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Starting Date*</label>
-              <input name="StartingDate" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+              <label for="Starting_Date" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Starting Date*</label>
+              <input name="Starting_Date" onChange={changeHandler} value={Starting_Date} type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
             </div>
 
             <div>
-              <label for="EndingDate" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Ending Date*</label>
-              <input name="EndingDate" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+              <label for="Ending_Date" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Ending Date*</label>
+              <input name="Ending_Date" onChange={changeHandler} value={Ending_Date} type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+            </div>
+
+            <div>
+              <label for="Gender" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Gender*</label>
+              <div className="flex flex-row">
+                <input name="Gender" type="radio" onClick={(e) => { setData({ ...data, Gender: 'Male' }) }} class="px-3 py-3 mr-1" />Male
+                <input name="Gender" type="radio" onClick={(e) => { setData({ ...data, Gender: 'Female' }) }} class="px-3 py-3 ml-4 mr-1" />Female
+                <input name="Gender" type="radio" onClick={(e) => { setData({ ...data, Gender: 'Both' }) }} class="px-3 py-3 ml-4 mr-1" />Both
+              </div>
             </div>
 
             <div class="sm:col-span-2">
@@ -72,8 +111,8 @@ export default function AddInternship() {
             </div>
 
             <div class="sm:col-span-2">
-              <label for="description" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Description*</label>
-              <textarea name="description" class="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
+              <label for="Description" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Description*</label>
+              <textarea name="Description" onChange={changeHandler} value={Description} class="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
             </div>
 
             <div className="relative mt-2">
@@ -128,7 +167,7 @@ export default function AddInternship() {
             </div>
 
             <div className="relative mt-2">
-            <label htmlFor="SkillsRequired" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">SkillsRequired*</label>
+              <label htmlFor="SkillsRequired" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">SkillsRequired*</label>
               <button type="button" name='Branch' onClick={handleSkillsClick} className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring sm:text-sm sm:leading-6" aria-haspopup="listbox" aria-expanded={isSkillsOpen} aria-labelledby="listbox-label">
                 <span className="flex items-center">
                   <span className="ml-3 block truncate">{selectedSkill || 'NONE'}</span>
@@ -146,40 +185,40 @@ export default function AddInternship() {
                     <div className="flex items-center">
                       <span className="font-normal ml-3 block truncate">CSE</span>
                     </div>
-                    
+
                   </li>
                   <li onClick={() => handleSkillsClickSelect('ECE')} className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" id="listbox-option-0" role="option" aria-selected="false">
                     <div className="flex items-center">
                       <span className="font-normal ml-3 block truncate">ECE</span>
                     </div>
-                    
+
                   </li>
                   <li onClick={() => handleSkillsClickSelect('EEE')} className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" id="listbox-option-0" role="option" aria-selected="false">
                     <div className="flex items-center">
                       <span className="font-normal ml-3 block truncate">EEE</span>
                     </div>
-                    
+
                   </li>
 
                   <li onClick={() => handleSkillsClickSelect('MECH')} className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" id="listbox-option-0" role="option" aria-selected="false">
                     <div className="flex items-center">
                       <span className="font-normal ml-3 block truncate">MECH</span>
                     </div>
-                    
+
                   </li>
 
                   <li onClick={() => handleSkillsClickSelect('NONE')} className="text-gray-900 relative cursor-default select-none py-2 pl-3 pr-9" id="listbox-option-0" role="option" aria-selected="false">
                     <div className="flex items-center">
                       <span className="font-normal ml-3 block truncate">ALL</span>
                     </div>
-                    
+
                   </li>
                 </ul>
               )}
             </div>
 
             <div className="flex items-center justify-between sm:col-span-2">
-              <button type="submit" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Send</button>
+              <button type="button" onClick={loginHandler} className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Send</button>
               <span className="text-sm text-gray-500">*Required</span>
             </div>
           </form>

@@ -6,7 +6,7 @@ export default function Navbar({ userPrivilege, handleLogout }) {
   const [show, setShow] = useState(null);
   const [toggle, setToggle] = useState(false);
   const [small, setSmall] = useState(window.innerWidth <= 768);
-  const style="block w-auto px-4 py-2 mr-1 border border-transparent rounded transition duration-300 hover:text-white hover:bg-indigo-600";
+  const style = "block w-auto px-4 py-2 mr-1 border border-transparent rounded transition duration-300 hover:text-white hover:bg-indigo-600";
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,15 +39,15 @@ export default function Navbar({ userPrivilege, handleLogout }) {
             </svg>
             <span className="ml-3 mt-4 text-xl text-indigo-600 md:mb-0">Placement Cell</span>
           </Link>
-          <nav className={`${toggle && small ? 'z-50 flex items-center text-center absolute top-[64px] left-0 bg-indigo-600 w-full flex-col gap-1 text-white font-bold py-2 text-lg' : 'hidden md:flex md:items-center'}`}> 
-            <Link to="/home" className={style}>Home</Link>
-            <Link to="/about" className={style}>About</Link>
-            <Link to="/placement_incharge" className={style}>Placement Incharge</Link>
-            <Link to="/alumini" className={style}>Alumni</Link>
-            {show === "Student" && <Link to="/student_login" className={style}>StudentLogin</Link>}
-            {show === "Admin" && <Link to="/incharge_login" className={style}>InchargeLogin</Link>} 
-            {userPrivilege ? null : <Link to="/Login" className={style}>Login</Link>}
-            {userPrivilege && <Logout handleLogout={handleLogout} />}
+          <nav className={`${toggle && small ? 'z-50 flex items-center text-center absolute top-[64px] left-0 bg-indigo-600 w-full flex-col gap-1 text-white font-bold py-2 text-lg' : 'hidden md:flex md:items-center'}`}>
+            <Link to="/home" className={style} onClick={toogleBtn}>Home</Link>
+            <Link to="/about" className={style} onClick={toogleBtn}>About</Link>
+            <Link to="/placement_incharge" className={style} onClick={toogleBtn}>Placement Incharge</Link>
+            <Link to="/alumini" className={style} onClick={toogleBtn}>Alumni</Link>
+            {show === "Student" && <Link to="/student_login" className={style} onClick={toogleBtn}>StudentLogin</Link>}
+            {show === "Admin" && <Link to="/incharge_login" className={style} onClick={toogleBtn}>InchargeLogin</Link>}
+            {userPrivilege ? null : <Link to="/Login" className={style} onClick={toogleBtn}>Login</Link>}
+            {userPrivilege && <Logout handleLogout={handleLogout} onClick={toogleBtn}/>}
           </nav>
           <button className='md:hidden absolute right-[10px] p-2' onClick={toogleBtn}>{toggle ? 'X' : <i className='fa-solid fa-bars'></i>}</button>
         </div>
